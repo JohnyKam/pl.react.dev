@@ -15,17 +15,17 @@ Zdarzają się sytuacje, kiedy stan dwóch komponentów musi zawsze zmieniać si
 
 </YouWillLearn>
 
-## Lifting state up by example {/*lifting-state-up-by-example*/}
+## Wynoszenia stanu w górę {/*lifting-state-up-by-example*/}
 
-In this example, a parent `Accordion` component renders two separate `Panel`s:
+W poniższym przykładzie komponent przodka `Accordion` renderuje dwa komponenty `Panel`:
 
 * `Accordion`
   - `Panel`
   - `Panel`
 
-Each `Panel` component has a boolean `isActive` state that determines whether its content is visible.
+Każdy komponent `Panel` posiada stan `isActive`, który przechowuje wartość logiczną. Stan `isActive` określa czy zawartość komponentu jest widoczna
 
-Press the Show button for both panels:
+Naciśnij przycisk "Pokaż" dla obu paneli:
 
 <Sandpack>
 
@@ -41,7 +41,7 @@ function Panel({ title, children }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Pokaż
         </button>
       )}
     </section>
@@ -52,11 +52,11 @@ export default function Accordion() {
   return (
     <>
       <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About">
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+      <Panel title="O mnie">
+        Jego populacja wynosi ponad 2 miliony, co sprawia, że Almaty jest największym miastem w Kazachstanie. W latach 1929-1997 był stolicą kraju.
       </Panel>
-      <Panel title="Etymology">
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+      <Panel title="Etymologia">
+        Nazwa pochodzi od <span lang="kk-KZ">алма</span>, kazachskiego słowa oznaczającego "jabłko", i najczęściej tłumaczona jest jako "pełne jabłek". Region otaczający Almaty podobno jest domem pradawnych odmian jabłek, a dziko tu rosnąca <i lang="la">Malus sieversii</i> uważana jest za przodka współczesnej jabłoni domowej.
       </Panel>
     </>
   );
@@ -73,33 +73,33 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Notice how pressing one panel's button does not affect the other panel--they are independent.
+Zauważ, że naciśnięcie przycisku na jednym panelu nie ma wpływu na drugi panel – są one niezależne.
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram przedstawiający drzewo trzech komponentów, jednego komponentu  przodka oznaczonego jako Accordion i dwóch komponentów potomnych oznaczonych jako Panel. Oba komponenty Panel zawierają stan isActive z wartością false.">
 
-Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
+Początkowo stan `isActive` każdego `Panelu` jest równy `false`, więc oba są zwinięte
 
 </Diagram>
 
-<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="Ten sam diagram co poprzedni. W pierwszym komponencie potomnym Panel jest wyróżniony, wskazując na kliknięcie i zmianę stanu isActive na wartość true. W drugim Panelu w dalszym ciągu stan isActive ma wartość false." >
 
-Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone
+Kliknięcie dowolnego przycisku `Panelu` spowoduje jedynie aktualizację stanu `isActive` tego `Panelu`
 
 </Diagram>
 
 </DiagramGroup>
 
-**But now let's say you want to change it so that only one panel is expanded at any given time.** With that design, expanding the second panel should collapse the first one. How would you do that?
+**Ale teraz powiedzmy, że chcesz to zmienić tak, aby w danym momencie rozwinięty był tylko jeden panel.** W taki sposób, że rozwinięcie jednego panelu powinno zwinąć drugi. Jak to zrobić?
 
-To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
+Aby kontrolować te dwa panele, musisz „wynieść ich stan” do komponentu przodka w trzech krokach:
 
-1. **Remove** state from the child components.
-2. **Pass** hardcoded data from the common parent.
-3. **Add** state to the common parent and pass it down together with the event handlers.
+1. **Usuń** stan z komponentów potomnych.
+2. **Przekaż** dane z wspólnego komponentu przodka.
+3. **Dodaj** stan do wspólnego przodka i przekaż go razem z procedura obsługi zdarzeń.
 
-This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
+Pozwoli to komponentowi `Accordion` na sterowanie komponentami `Panel` i rozwinięcie tylko jednego z nich w danym momencie.
 
 ### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
 

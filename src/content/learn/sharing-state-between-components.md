@@ -4,14 +4,14 @@ title: Współdzielenie stanu między komponentami
 
 <Intro>
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
+Zdarzają się sytuacje, kiedy stan dwóch komponentów musi zawsze zmieniać się w tym samym czasie. W tym celu należy usunąć wspólny stan z obydwu komponentów, następnie dodać go do ich wspólnego rodzica, a na koniec przekazać go do komponentów poprzez właściwości (*ang.* props). Taki zabieg określa się mianem "wynoszenia stanu w górę" i jest jedną z najczęstszych czynności wykonywanych podczas tworzenia aplikacji reactowych.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to share state between components by lifting it up
-- What are controlled and uncontrolled components
+- Jak "wynieść stan do góry", aby współdzielić go między komponentami
+- Co to jest komponent kontrolowany i komponent niekontrolowany
 
 </YouWillLearn>
 

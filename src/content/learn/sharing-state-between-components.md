@@ -101,21 +101,21 @@ Aby kontrolować te dwa panele, musisz „wynieść ich stan” do komponentu pr
 
 Pozwoli to komponentowi `Accordion` na sterowanie komponentami `Panel` i rozwinięcie tylko jednego z nich w danym momencie.
 
-### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
+### Krok 1: Usuń stan z komponentów potomnych {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+Przekażesz kontrolę nad stanem `isActive` komponentu `Panel` do komponentu przodka. W zamian przodek przekaże właściwość `isActive` do `Panelu`. Zacznij od **usunięcia  tej linii** z komponentu `Panel`:
 
 ```js
 const [isActive, setIsActive] = useState(false);
 ```
 
-And instead, add `isActive` to the `Panel`'s list of props:
+Następnie dodaj `isActive` do właściwości `Panelu`:
 
 ```js
 function Panel({ title, children, isActive }) {
 ```
 
-Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
+W ten sposób komponent przodka `Panelu` *kontroluje* właściwości `isActive` poprzez [przekazywanie wartości do komponentu.](/learn/passing-props-to-a-component) Natomiast komponent `Panel` *nie ma kontroli* nad wartością `isActive`--teraz zależy to od komponentu przodka!
 
 ### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 

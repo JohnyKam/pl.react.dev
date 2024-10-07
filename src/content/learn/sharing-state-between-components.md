@@ -4,7 +4,7 @@ title: Współdzielenie stanu między komponentami
 
 <Intro>
 
-Zdarzają się sytuacje, kiedy stan dwóch komponentów musi zawsze zmieniać się w tym samym czasie. W tym celu należy usunąć wspólny stan z obydwu komponentów, następnie dodać go do ich wspólnego rodzica, a na koniec przekazać go do komponentów poprzez właściwości (*ang.* props). Taki zabieg określa się mianem "wynoszenia stanu w górę" i jest jedną z najczęstszych czynności wykonywanych podczas tworzenia aplikacji reactowych.
+Zdarzają się sytuacje, kiedy stan dwóch komponentów musi zawsze zmieniać się w tym samym czasie. W tym celu należy usunąć wspólny stan z obydwu komponentów, następnie dodać go do ich wspólnego przodka, a na koniec przekazać go do komponentów poprzez właściwości (*ang.* props). Taki zabieg określa się mianem "wynoszenia stanu w górę" i jest jedną z najczęstszych czynności wykonywanych podczas tworzenia aplikacji reactowych.
 
 </Intro>
 

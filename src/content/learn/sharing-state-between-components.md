@@ -117,15 +117,15 @@ function Panel({ title, children, isActive }) {
 
 W ten sposób komponent przodka `Panelu` *kontroluje* właściwości `isActive` poprzez [przekazywanie wartości do komponentu.](/learn/passing-props-to-a-component) Natomiast komponent `Panel` *nie ma kontroli* nad wartością `isActive`--teraz zależy to od komponentu przodka!
 
-### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
+### Krok 2: Przekaż dane ze wspólnego przodka {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
-To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
+Aby wynieść stan w górę, musisz znaleźć najbliższy wspólny komponent przodka *obu* komponentów potomnych, które chcesz skoordynować:
 
-* `Accordion` *(closest common parent)*
+* `Accordion` *(najbliższy wspólny przodek)*
   - `Panel`
   - `Panel`
 
-In this example, it's the `Accordion` component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
+W tym przykładzie jest to komponent `Accordion`. Ponieważ znajduje się on powyżej obu paneli i może kontrolować ich właściwości, stanie się "źródłem prawdy" dla tego, który panel jest aktualnie aktywny. Zmień komponent `Accordion` tak aby przekazywał zakodowaną na stałe właściwość `isActive` (na przykład `true`) do obu paneli:
 
 <Sandpack>
 
@@ -136,11 +136,11 @@ export default function Accordion() {
   return (
     <>
       <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About" isActive={true}>
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+      <Panel title="O mnie" isActive={true}>
+        Jego populacja wynosi ponad 2 miliony, co sprawia, że Almaty jest największym miastem w Kazachstanie. W latach 1929-1997 był stolicą kraju.
       </Panel>
-      <Panel title="Etymology" isActive={true}>
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+      <Panel title="Etymologia" isActive={true}>
+        Nazwa pochodzi od <span lang="kk-KZ">алма</span>, kazachskiego słowa oznaczającego "jabłko", i najczęściej tłumaczona jest jako "pełne jabłek". Region otaczający Almaty podobno jest domem pradawnych odmian jabłek, a dziko tu rosnąca <i lang="la">Malus sieversii</i> uważana jest za przodka współczesnej jabłoni domowej.
       </Panel>
     </>
   );
@@ -154,7 +154,7 @@ function Panel({ title, children, isActive }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Pokaż
         </button>
       )}
     </section>
@@ -172,7 +172,7 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Try editing the hardcoded `isActive` values in the `Accordion` component and see the result on the screen.
+Pozmieniaj wartość właściwości `isActive` w komponencie `Accordion` i zobacz jaki jest efekt tych zmian.
 
 ### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
 

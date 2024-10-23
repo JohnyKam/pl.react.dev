@@ -52,7 +52,7 @@ export default function Accordion() {
   return (
     <>
       <h2>Almaty, Kazakhstan</h2>
-      <Panel title="O mnie">
+      <Panel title="O mieście">
         Jego populacja wynosi ponad 2 miliony, co sprawia, że Almaty jest największym miastem w Kazachstanie. W latach 1929-1997 był stolicą kraju.
       </Panel>
       <Panel title="Etymologia">
@@ -136,7 +136,7 @@ export default function Accordion() {
   return (
     <>
       <h2>Almaty, Kazakhstan</h2>
-      <Panel title="O mnie" isActive={true}>
+      <Panel title="O mieście" isActive={true}>
         Jego populacja wynosi ponad 2 miliony, co sprawia, że Almaty jest największym miastem w Kazachstanie. W latach 1929-1997 był stolicą kraju.
       </Panel>
       <Panel title="Etymologia" isActive={true}>
@@ -174,19 +174,19 @@ h3, p { margin: 5px 0px; }
 
 Pozmieniaj wartość właściwości `isActive` w komponencie `Accordion` i zobacz jaki jest efekt tych zmian.
 
-### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
+### Krok 3: Dodanie stanu komponentu do wspólnego przodka {/*step-3-add-state-to-the-common-parent*/}
 
-Lifting state up often changes the nature of what you're storing as state.
+Wynoszenie stanu w górę często zmienia sposób w jaki będzie zarządzany stan komponentów.
 
-In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use a number as the index of the active `Panel` for the state variable:
+Założenie jest takie, że tylko jeden panel powinien być aktywny w danym momencie. Oznacza to, że wspólny komponent nadrzędny `Accordion` musi śledzić *który* panel jest aktywny. Zamiast wartości `boolean` można użyć liczby, która odpowiada wartości indeksu aktywnego `Panelu` dla zmiennej stanu:
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);
 ```
 
-When the `activeIndex` is `0`, the first panel is active, and when it's `1`, it's the second one.
+Gdy `activeIndex` wynosi `0`, pierwszy panel jest aktywny, a gdy wynosi `1`, aktywny jest drugi panel.
 
-Clicking the "Show" button in either `Panel` needs to change the active index in `Accordion`. A `Panel` can't set the `activeIndex` state directly because it's defined inside the `Accordion`. The `Accordion` component needs to *explicitly allow* the `Panel` component to change its state by [passing an event handler down as a prop](/learn/responding-to-events#passing-event-handlers-as-props):
+Naciśnięcie przycisku "Pokaż" w dowolnym `Panelu` musi zmienić aktywny indeks w `Accordion`. `Panel` nie może bezpośrednio ustawić stanu `activeIndex`, ponieważ jest on zdefiniowany wewnątrz `Accordion`. Komponent `Accordion` musi *wyraźnie zezwolić* komponentowi `Panel` na zmianę swojego stanu poprzez [przekazanie procedury obsługi zdarzeń jako właściwości](/learn/responding-to-events#passing-event-handlers-as-props):
 
 ```js
 <>
@@ -205,7 +205,7 @@ Clicking the "Show" button in either `Panel` needs to change the active index in
 </>
 ```
 
-The `<button>` inside the `Panel` will now use the `onShow` prop as its click event handler:
+Do przycisk `<button>` wewnątrz komponentu `Panel` należy również dodać właściwość `onShow`, która przekaże obsługę zdarzenia kliknięcia:
 
 <Sandpack>
 
@@ -218,18 +218,18 @@ export default function Accordion() {
     <>
       <h2>Almaty, Kazakhstan</h2>
       <Panel
-        title="About"
+        title="O mieście"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Jego populacja wynosi ponad 2 miliony, co sprawia, że Almaty jest największym miastem w Kazachstanie. W latach 1929-1997 był stolicą kraju.
       </Panel>
       <Panel
-        title="Etymology"
+        title="Etymologia"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Nazwa pochodzi od <span lang="kk-KZ">алма</span>, kazachskiego słowa oznaczającego "jabłko", i najczęściej tłumaczona jest jako "pełne jabłek". Region otaczający Almaty podobno jest domem pradawnych odmian jabłek, a dziko tu rosnąca <i lang="la">Malus sieversii</i> uważana jest za przodka współczesnej jabłoni domowej.
       </Panel>
     </>
   );
@@ -248,7 +248,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Pokaż
         </button>
       )}
     </section>
@@ -266,19 +266,19 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-This completes lifting state up! Moving state into the common parent component allowed you to coordinate the two panels. Using the active index instead of two "is shown" flags ensured that only one panel is active at a given time. And passing down the event handler to the child allowed the child to change the parent's state.
+To kończy proces wynoszenia stanu w górę! Przeniesienie stanu do wspólnego przodka pozwoliło koordynowanie stanem dwóch paneli. Użycie indeksu zamiast dwóch flag "jest pokazany" zapewniło, że w danym momencie aktywny jest tylko jeden panel. Zas przekazanie procedury obsługi zdarzeń do komponentu potomnego pozwoliło mu na zmianę stanu przodka.
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
+<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram przedstawiający drzewo trzech komponentów, jednego komponentu przodka oznaczonego jako Accordion i dwóch komponentów potomnych oznaczonych jako Panel. Accordion zawiera stan activeIndex równy zero, który jest przekazywana jako właściwość isActive o wartości true do pierwszego Panelu, oraz jako właściwość isActive o wartości false do drugiego Panelu." >
 
-Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
+Początkowo `activeIndex` komponentu `Accordion` wynosi `0`, więc w pierwszym `Panel` właściwość `isActive = true`
 
 </Diagram>
 
-<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="The same diagram as the previous, with the activeIndex value of the parent Accordion component highlighted indicating a click with the value changed to one. The flow to both of the children Panel components is also highlighted, and the isActive value passed to each child is set to the opposite: false for the first Panel and true for the second one." >
+<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="Ten sam diagram co poprzedni, z wyróżnioną wartością stanu activeIndex komponentu przodka Accordion wskazującą na kliknięcie i zmianę wartości na jeden. Przepływ do obu komponentów potomnych Panel jest również wyróżniony, a wartość właściwości isActive przekazywana do każdego dziecka jest ustawiona na przeciwną: false dla pierwszego Panelu i true dla drugiego." >
 
-When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receives `isActive = true` instead
+Kiedy stan `activeIndex` komponentu `Accordion` zmieni się na `1`, wówczas w drugim `Panel` właściwość `isActive = true`
 
 </Diagram>
 

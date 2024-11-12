@@ -286,17 +286,17 @@ Kiedy stan `activeIndex` komponentu `Accordion` zmieni się na `1`, wówczas w d
 
 <DeepDive>
 
-#### Controlled and uncontrolled components {/*controlled-and-uncontrolled-components*/}
+#### Komponenty kontrolowane i niekontrolowane {/*controlled-and-uncontrolled-components*/}
 
-It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
+Często mówi się, że komponent z lokalnym stanem jest "niekontrolowany". Na przykład, oryginalny komponent `Panel` z zmienną stanu `isActive` jest niekontrolowany, ponieważ jego przodek nie może wpływać na to, czy panel jest aktywny, czy nie.
 
-In contrast, you might say a component is "controlled" when the important information in it is driven by props rather than its own local state. This lets the parent component fully specify its behavior. The final `Panel` component with the `isActive` prop is controlled by the `Accordion` component.
+Z drugiej strony, można powiedzieć, że komponent jest "kontrolowany", gdy ważne informacje w nim są sterowane przez właściwości zamiast jego własnego lokalnego stanu. Pozwala to komponentowi przodka w pełni określić jego zachowanie. Ostatecznie komponent `Panel` z właściwością `isActive` jest kontrolowany przez komponent `Accordion`.
 
-Uncontrolled components are easier to use within their parents because they require less configuration. But they're less flexible when you want to coordinate them together. Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
+Komponenty niekontrolowane są łatwiejsze w użyciu przez ich przodka, ponieważ wymagają mniej konfiguracji. Jednak są mniej elastyczne, gdy chcesz je ze sobą powiązać. Komponenty kontrolowane są maksymalnie elastyczne, ale wymagają, aby komponenty przodka w pełni je konfigurowały za pomocą przekazywanych właściwości.
 
-In practice, "controlled" and "uncontrolled" aren't strict technical terms--each component usually has some mix of both local state and props. However, this is a useful way to talk about how components are designed and what capabilities they offer.
+W praktyce "kontrolowane" i "niekontrolowane" nie są ścisłymi terminami technicznymi, każdy komponent zazwyczaj ma pewną mieszankę zarówno lokalnego stanu, jak i przekazywanych właściwości. Jednakże, jest to użyteczny sposób określanie tego, jak komponenty są zaprojektowane i jakie możliwości oferują.
 
-When writing a component, consider which information in it should be controlled (via props), and which information should be uncontrolled (via state). But you can always change your mind and refactor later.
+Budując komponent, zastanów się, które informacje w nim powinny być kontrolowane (przez przekazanie właściwości), a które informacje powinny być niekontrolowane (przez użycie stanu). Oczywiście zawsze możesz zmienić zdanie i przerobić komponent.
 
 </DeepDive>
 

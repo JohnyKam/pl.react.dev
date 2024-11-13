@@ -312,10 +312,10 @@ To see what this feels like in practice with a few more components, read [Myśle
 
 <Recap>
 
-* When you want to coordinate two components, move their state to their common parent.
-* Then pass the information down through props from their common parent.
-* Finally, pass the event handlers down so that the children can change the parent's state.
-* It's useful to consider components as "controlled" (driven by props) or "uncontrolled" (driven by state).
+* Kiedy chcesz kontrolować dwa komponenty, przenieś ich stan do wspólnego przodka.
+* Następnie przekaż informacje poprzez właściwości od wspólnego przodka.
+* Na koniec przekaż procedury obsługi zdarzeń, aby komponenty potomków mogły zmieniać stan przodka.
+* Warto rozważyć komponenty jako "kontrolowane" (sterowane przez właściwości) lub "niekontrolowane" (sterowane przez stan).
 
 </Recap>
 
@@ -327,7 +327,7 @@ These two inputs are independent. Make them stay in sync: editing one input shou
 
 <Hint>
 
-You'll need to lift their state up into the parent component.
+Musisz wynieść ich stan do komponentu przodka.
 
 </Hint>
 

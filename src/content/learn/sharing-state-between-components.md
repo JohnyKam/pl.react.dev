@@ -321,9 +321,9 @@ To see what this feels like in practice with a few more components, read [Myśle
 
 <Challenges>
 
-#### Synced inputs {/*synced-inputs*/}
+#### Zsynchronizowane pola wejściowe {/*synced-inputs*/}
 
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
+Te dwa pola wejściowe są niezależne. Spraw, aby były zsynchronizowane: edytowanie jednego pola powinno aktualizować drugie pole tym samym tekstem i odwrotnie.
 
 <Hint>
 
@@ -339,8 +339,8 @@ import { useState } from 'react';
 export default function SyncedInputs() {
   return (
     <>
-      <Input label="First input" />
-      <Input label="Second input" />
+      <Input label="Pierwsze pole" />
+      <Input label="Drugie pole" />
     </>
   );
 }
@@ -374,7 +374,7 @@ label { display: block; }
 
 <Solution>
 
-Move the `text` state variable into the parent component along with the `handleChange` handler. Then pass them down as props to both of the `Input` components. This will keep them in sync.
+Przenieś zmienną stanu `text` do komponentu przodka wraz z procedurą obsługi `handleChange`. Następnie przekaż je jako właściwości do obu komponentów `Input`. To pozwoli na ich synchronizację.
 
 <Sandpack>
 
@@ -391,12 +391,12 @@ export default function SyncedInputs() {
   return (
     <>
       <Input
-        label="First input"
+        label="Pierwsze pole"
         value={text}
         onChange={handleChange}
       />
       <Input
-        label="Second input"
+        label="Drugie pole"
         value={text}
         onChange={handleChange}
       />

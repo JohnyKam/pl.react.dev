@@ -302,13 +302,13 @@ Budując komponent, zastanów się, które informacje w nim powinny być kontrol
 
 ## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
 
-In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
+W aplikacji React wiele komponentów będzie miało swój własny stan. Niektóre komponenty, mające stan mogą być komponentami znajdującymi się na dole struktury (końcu hierarchii). Niektóre komponenty są sterowane przez stan przechowywany w komponencie na szczycie struktury. Dla przykładu, biblioteki routingu i nawigacji przechowują bieżącą ścieżkę w swoim stanie i przekazują jej wartość innym komponentom poprzez właściwości.
 
-**For each unique piece of state, you will choose the component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ component that holds that piece of information. Instead of duplicating shared state between components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
+**Musisz wybrać który komponent ma "posiadać" stan.** W myśl reguły znanej jako ["jedno źródło prawdy."](https://en.wikipedia.org/wiki/Single_source_of_truth) Niekoniecznie wszystkie stany znajdują się w jednym głównym komponencie--chodzi o to by _konkretny_ komponent przechowywał informację o _danym_ stanie. Nie należy powielać stanu w komponentach, chodzi o to by *wynieść do góry* stan, do wspólnego przodka i *przekazać go w dół* do komponentów potomnych, które go potrzebują.
 
-Your app will change as you work on it. It is common that you will move state down or back up while you're still figuring out where each piece of the state "lives". This is all part of the process!
+Twoja aplikacja w trakcie swojego rozwoju będzie się zmieniać. Często może dochodzić do tego, że będziesz przenosić stan w dół lub z powrotem w górę, szukając odpowiedniego komponentu, który ma dany stan przechowywać. Jest to częścią procesu budowy aplikacji! 
 
-To see what this feels like in practice with a few more components, read [Myślenie reactowe](/learn/thinking-in-react).
+Aby zobaczyć, jak to wygląda w praktyce z kilkoma dodatkowymi komponentami, przeczytaj [Myślenie w React](/learn/thinking-in-react).
 
 <Recap>
 

@@ -304,7 +304,7 @@ Budując komponent, zastanów się, które informacje w nim powinny być kontrol
 
 W aplikacji React wiele komponentów będzie miało swój własny stan. Niektóre komponenty, mające stan mogą być komponentami znajdującymi się na dole struktury (końcu hierarchii). Niektóre komponenty są sterowane przez stan przechowywany w komponencie na szczycie struktury. Dla przykładu, biblioteki routingu i nawigacji przechowują bieżącą ścieżkę w swoim stanie i przekazują jej wartość innym komponentom poprzez właściwości.
 
-**Musisz wybrać który komponent ma "posiadać" stan.** W myśl reguły znanej jako ["jedno źródło prawdy."](https://en.wikipedia.org/wiki/Single_source_of_truth) Niekoniecznie wszystkie stany znajdują się w jednym głównym komponencie--chodzi o to by _konkretny_ komponent przechowywał informację o _danym_ stanie. Nie należy powielać stanu w komponentach, chodzi o to by *wynieść do góry* stan, do wspólnego przodka i *przekazać go w dół* do komponentów potomnych, które go potrzebują.
+**Musisz wybrać, który komponent będzie "posiadał" stan,** zgodnie z zasadą znaną jako ["jedno źródło prawdy."](https://en.wikipedia.org/wiki/Single_source_of_truth) Nie oznacza to, że wszystkie stany muszą być przechowywane w jednym głównym komponencie – chodzi o to, aby _konkretny_ komponent przechowywał informację o _danym_ stanie. Unikaj duplikowania stanu w różnych komponentach. Zamiast tego, *wynieś stan do góry* do najbliższego wspólnego przodka i *przekaż go w dół* do komponentów potomnych, które go potrzebują.
 
 Twoja aplikacja w trakcie swojego rozwoju będzie się zmieniać. Często może dochodzić do tego, że będziesz przenosić stan w dół lub z powrotem w górę, szukając odpowiedniego komponentu, który ma dany stan przechowywać. Jest to częścią procesu budowy aplikacji! 
 
@@ -427,7 +427,7 @@ label { display: block; }
 
 </Solution>
 
-#### Filtering a list {/*filtering-a-list*/}
+#### Filtrowanie listy {/*filtering-a-list*/}
 
 In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
 
